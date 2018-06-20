@@ -13,14 +13,8 @@ import (
 	"strings"
 
 	"github.com/studio-b12/gowebdav"
-	"github.com/thamaji/ioutils"
-	"github.com/vbauerster/mpb"
-	"github.com/vbauerster/mpb/decor"
 	"golang.org/x/crypto/ssh/terminal"
 )
-
-var progressbar = mpb.New()
-var pathMax = 16
 
 func usage() {
 	output := flag.CommandLine.Output()
@@ -104,6 +98,8 @@ func download(client *gowebdav.Client, remotePath string, stat os.FileInfo, loca
 		}
 	}()
 
+	fmt.Println(remotePath)
+
 	remoteFile, err := client.ReadStream(remotePath)
 	if err != nil {
 		return err
@@ -113,30 +109,7 @@ func download(client *gowebdav.Client, remotePath string, stat os.FileInfo, loca
 		remoteFile.Close()
 	}()
 
-	size := fmt.Sprintf("%d", decor.CounterKB(stat.Size()))
-
-	bar := progressbar.AddBar(
-		stat.Size(),
-		mpb.PrependDecorators(
-			decor.StaticName(remotePath, len(remotePath)+1, decor.DwidthSync|decor.DidentRight),
-			decor.StaticName(size, len(size)+1, 0),
-		),
-		mpb.AppendDecorators(
-			func(s *decor.Statistics, widthAccumulator chan<- int, widthDistributor <-chan int) string {
-				return fmt.Sprintf("%3d%%", decor.CalcPercentage(s.Total, s.Current, 100))
-			},
-		),
-	)
-
-	writer := ioutils.WriterFunc(func(p []byte) (int, error) {
-		n, err := localFile.Write(p)
-		if err == nil {
-			bar.IncrBy(n)
-		}
-		return n, err
-	})
-
-	_, err = io.Copy(writer, remoteFile)
+	_, err = io.Copy(localFile, remoteFile)
 
 	return err
 }
