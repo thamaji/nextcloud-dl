@@ -2,12 +2,6 @@
 
 
 [[projects]]
-  name = "github.com/mattn/go-isatty"
-  packages = ["."]
-  revision = "0360b2af4f38e8d38c7fce2a9f4e702702d73a39"
-  version = "v0.0.3"
-
-[[projects]]
   name = "github.com/studio-b12/gowebdav"
   packages = ["."]
   revision = "a33240e4ab5b60f5295e83245a32c51d14ef8122"
@@ -15,25 +9,9 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/thamaji/ioutils"
-  packages = ["."]
-  revision = "a8793efb4c40f5a4fc4a5ed0db70741ea68df0bb"
-
-[[projects]]
-  name = "github.com/vbauerster/mpb"
-  packages = [
-    ".",
-    "cwriter",
-    "decor"
-  ]
-  revision = "23769ee3856b917f8a1ae929ca1c6f408ebdaefe"
-  version = "v3.2.0"
-
-[[projects]]
-  branch = "master"
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
-  revision = "8ac0e0d97ce45cd83d1d7243c060cb8461dda5e9"
+  revision = "7f39a6fea4fe9364fb61e1def6a268a51b4f3a06"
 
 [[projects]]
   branch = "master"
@@ -42,11 +20,11 @@
     "unix",
     "windows"
   ]
-  revision = "9527bec2660bd847c050fda93a0f0c6dee0800bb"
+  revision = "ad87a3a340fa7f3bed189293fbfa7a9b7e021ae1"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "482e2c01077cab1b987145fa5936fabf26623d26b8966be14605c5bb095f86d8"
+  inputs-digest = "7e5c2cf34bbd269ebe59e7bab7123b7f1d82f4ce4dd911aff5b15085f61cb64d"
   solver-name = "gps-cdcl"
   solver-version = 1
